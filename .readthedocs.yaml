@@ -1,13 +1,29 @@
+# Read the Docs build for the mitk Python documentation.
+#
+# The documentation source is not stored in this repository; it lives in MITK
+# under Wrapping/Python/docs. post_checkout fetches it so the published site
+# stays a single source of truth with the bindings.
 version: 2
 
 build:
   os: ubuntu-24.04
   tools:
     python: "3.12"
+  jobs:
+    post_checkout:
+      - 'rm -rf docs .mitk-src'
+      - 'git clone --depth 1 --no-tags --filter=blob:none --sparse --branch "${MITK_DOCS_REF:-develop}" https://github.com/MITK/MITK.git .mitk-src'
+      - 'git -C .mitk-src sparse-checkout set Wrapping/Python/docs'
+      - 'cp -r .mitk-src/Wrapping/Python/docs docs'
+      - 'rm -rf .mitk-src'
 
+# fail_on_warning is intentionally unset: while latest tracks the dev line,
+# develop may list API that the last published dev wheel lacks, which autodoc
+# reports as a warning rather than an error.
 sphinx:
   configuration: docs/conf.py
 
 python:
   install:
+    - requirements: docs/requirements.txt
     - requirements: requirements.txt

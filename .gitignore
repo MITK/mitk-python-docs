@@ -69,7 +69,9 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+# docs/ is fetched from MITK at build time (see .readthedocs.yaml); never committed.
+/docs/
+/.mitk-src/
 
 # PyBuilder
 .pybuilder/
