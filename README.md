@@ -11,14 +11,13 @@ The published docs are generated automatically from the [`mitk-python`](https://
 │   ├── conf.py       # Sphinx configuration
 │   └── index.rst     # Documentation root (auto-generates API reference)
 ├── .readthedocs.yaml # Read the Docs build configuration
-├── requirements.txt  # Sphinx build dependencies
+├── requirements.txt  # Sphinx and mitk-python dependencies
 └── LICENSE
 ```
 
 ## Prerequisites
 
 - **Python 3.12** (matches the Read the Docs build environment)
-- The `mitk-python` package (installed separately; see [Quick start](#quick-start))
 
 ## Quick start
 
@@ -27,11 +26,8 @@ The published docs are generated automatically from the [`mitk-python`](https://
 python3.12 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# 2. Install Sphinx build dependencies
+# 2. Install all dependencies (Sphinx + mitk-python)
 pip install -r requirements.txt
-
-# 3. Install the mitk-python package
-pip install mitk-python
 ```
 
 > **Note:** `mitk-python` is a compiled package with binary wheels.
@@ -57,11 +53,11 @@ Key settings:
 | Python | 3.12 |
 | Sphinx config | `docs/conf.py` |
 
-On every push to the default branch, Read the Docs installs the dependencies listed in `requirements.txt`, installs the `mitk-python` package, and builds the HTML docs.
+On every push to the default branch, Read the Docs installs the dependencies listed in `requirements.txt` (which includes `mitk-python`) and builds the HTML docs.
 
 ## Versioning
 
-The API reference tracks a specific release of `mitk-python`, pinned in [`.readthedocs.yaml`](.readthedocs.yaml).
+The API reference tracks a specific release of `mitk-python`, pinned in [`requirements.txt`](requirements.txt).
 To update the documented version, change the `mitk-python==<version>` line in that file.
 
 ## Contributing
