@@ -1,6 +1,6 @@
 # mitk-python-docs
 
-Source for the [MITK Python API](https://mitk-python-docs.readthedocs.io) reference documentation.
+Source for the [MITK Python API](https://mitk-python.readthedocs.io) reference documentation.
 The published docs are generated automatically from the [`mitk-python`](https://pypi.org/project/mitk-python/) package using [Sphinx](https://www.sphinx-doc.org) and hosted on [Read the Docs](https://readthedocs.org).
 
 ## What this repository contains
